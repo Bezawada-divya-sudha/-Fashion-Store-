@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' 
+    rel='stylesheet'>
+    
+    <!-- StyleSheet -->
+    <link rel="stylesheet" href="styles.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Login Page</title>
+</head>
+<body>
+
+     <!-- Header -->
+     <header class="header" id="header">
+        <!-- Top Nav -->
+        <div class="top-nav">
+          <div class="container d-flex">
+            <p>Fashion Designer Store For Women's: Online Shopping - Order Online Or Call Us: (001) 2222-55555</p>
+            <ul class="d-flex">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+            </div>
+            </div>
+
+             <!-- Navigation -->
+            <div class="navigation">
+                <div class="nav-center container d-flex">
+                <a href="/" class="logo"><h1>Fashion</h1></a>
+        
+                  <ul class="nav-list d-flex">
+                    <li class="nav-item">
+                      <a href="Home.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="product.html" class="nav-link">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                    <a href="#terms" class="nav-link">Terms</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                      <li class="icons d-flex">
+                      </li>
+                    </ul>
+                  </ul>
+                   <!-- Icons -->
+                  <div class="icons d-flex">
+                    <a href="login.html" class="icon">
+                      <i class="bx bx-user"></i>
+                    </a>
+                    <div class="icon">
+                      <i class="bx bx-search"></i>
+                    </div>
+                    <div class="icon">
+                      <i class="bx bx-heart"></i>
+                      <span class="d-flex">0</span>
+                    </div>
+                    <a href="cart.html" class="icon">
+                      <i class="bx bx-cart"></i>
+                      <span class="d-flex">0</span>
+                    </a>
+                  </div>
+          
+                  <div class="hamburger">
+                    <i class="bx bx-menu-alt-left"></i>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Login -->
+              <section>
+                <div class="wrapper">
+                    <center>
+                        <header id="hh">
+                            Login
+                        </header>
+                    </center>
+                    <form onsubmit="handleSubmit(event)" class="header" method="post" id="loginForm">
+                        <div class="field input">
+                            <label for="email", style="color: rgb(72, 6, 60); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Email</label>
+                            <input type="text" id="username" name="email" placeholder="Enter email">
+                        </div>
+                        <div class="field input">
+                            <label for="password", style="color: rgb(72, 6, 60); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter password">
+                        </div>
+                        <div class="field-but">
+                            <input type="submit" name="submit" id="login" style="display: inline-block; margin-right: 10px;" value="Login">
+                            <input type="button" name="submit" id="sup" style="display: inline-block;" class="disable" value="Sign up" onclick="switchToSignup()">
+                        </div>
+                    </form>
+                    <form onsubmit="handleSignup(event)" class="header" method="post" id="signupForm" style="display: none;">
+                        <div class="field input">
+                            <label for="signup_email", style="color: rgb(72, 6, 60); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Email</label>
+                            <input type="text" id="signup_email" name="email" placeholder="Enter email">
+                        </div>
+                        <div class="field input">
+                            <label for="signup_password", style="color: rgb(72, 6, 60); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Password</label>
+                            <input type="password" id="signup_password" name="password" placeholder="Enter password">
+                        </div>
+                        <div class="field-but">
+                            <input type="submit" name="submit" id="signup" style="display: inline-block; margin-right: 10px;" value="Sign up">
+                            <input type="button" name="submit" id="back" style="display: inline-block;" class="disable" value="Back to Login" onclick="switchToLogin()">
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <script>
+                // Array to store registered users
+                let registeredUsers = [];
+        
+                // Function to add user to the array
+                function addUser(email, password) {
+                    registeredUsers.push({ email: email, password: password });
+                }
+        
+                // Function to handle login
+                function handleLogin(email, password) {
+                    for (let user of registeredUsers) {
+                        if (user.email === email && user.password === password) {
+                            alert("Login successful!");
+                            return;
+                        }
+                    }
+                    //user doesn't exist then sign up
+                    alert("User not found. Signing up...");
+                    addUser(email, password);
+                    alert("Sign up successful!");
+                }
+        
+                // Function to handle signup
+                function handleSignup(event) {
+                    event.preventDefault(); // Prevent form submission
+                    let email = document.getElementById("signup_email").value;
+                    let password = document.getElementById("signup_password").value;
+                    addUser(email, password);
+                    alert("Sign up successful!");
+                }
+        
+                // Function to handle form submission
+                function handleSubmit(event) {
+                    event.preventDefault(); // Prevent form submission
+                    let email = document.getElementById("username").value;
+                    let password = document.getElementById("password").value;
+        
+                    // Check if it's a login or signup
+                    if (event.submitter.id === "login") {
+                        handleLogin(email, password);
+                    }
+                }
+        
+                // Function to switch to signup form
+                function switchToSignup() {
+                    document.getElementById("hh").innerHTML = "Sign up";
+                    document.getElementById("signupForm").style.display = "block";
+                    document.getElementById("loginForm").style.display = "none";
+                }
+        
+                // Function to switch to login form
+                function switchToLogin() {
+                    document.getElementById("hh").innerHTML = "Login";
+                    document.getElementById("loginForm").style.display = "block";
+                    document.getElementById("signupForm").style.display = "none";
+                }
+             
+              
+           
+            </script>
+          </div>
+    </body>
+  </html>
+ 
